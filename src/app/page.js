@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { firebase } from '../utils/client';
 import SignIn from '../components/SignIn';
 import NavBar from '../components/NavBar';
+import UserProfile from './UserProfile/[uid]/page';
 
 function Home() {
   const [user, setUser] = useState(null);
@@ -21,7 +22,12 @@ function Home() {
   }
 
   if (user) {
-    return <NavBar />;
+    return (
+      <>
+        <NavBar />
+        <UserProfile />
+      </>
+    );
   }
 
   return (
