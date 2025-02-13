@@ -1,4 +1,29 @@
+'use client';
+
+import React, { useEffect, useState } from 'react';
+import { firebase } from '../utils/client';
+import SignIn from '../components/SignIn';
+import NavBar from '../components/NavBar';
+
 function Home() {
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const unsubscribe = firebase.auth().onAuthStateChanged((users) => {
+      setUser(users);
+    });
+
+    return () => unsubscribe();
+  }, []);
+
+  if (!user) {
+    return <SignIn />;
+  }
+
+  if (user) {
+    return <NavBar />;
+  }
+
   return (
     <div
       className="text-center d-flex flex-column justify-content-center align-content-center"
@@ -9,7 +34,7 @@ function Home() {
         margin: '0 auto',
       }}
     >
-      Welcome to Next JS!
+      <h1>page.js</h1>
     </div>
   );
 }
