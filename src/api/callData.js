@@ -15,9 +15,9 @@ const getPosts = () =>
       .catch(reject);
   });
 
-const impostor = () =>
+const getUserPosts = (uid) =>
   new Promise((resolve, reject) => {
-    fetch(`${endpoint}/posts`, {
+    fetch(`${endpoint}/posts/${uid}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -28,4 +28,4 @@ const impostor = () =>
       .catch(reject);
   });
 
-export { getPosts, impostor };
+export { getPosts, getUserPosts };
